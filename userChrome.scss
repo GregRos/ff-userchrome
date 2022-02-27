@@ -1,0 +1,63 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+.search-one-offs {
+  display: none !important;
+}
+
+#contentAreaContextMenu {
+  #context-take-screenshot,
+  #context-sep-screenshots,
+  #context-print-selection,
+  #context-inspect-a11y,
+  #context-pocket,
+  #context-sendpagetodevice,
+  #appMenu-print-button2,
+  #appMenu-passwords-button,
+  #appMenu-new-tab-button2,
+  #context-openlinkintab,
+  #context-bookmarklink,
+  #context-sendlinktodevice,
+  #context-sendimage,
+  #context-setDesktopBackground,
+  #context-sep-setbackground {
+    display: none !important;
+  }
+
+  [label="LastPass"] {
+    display: none;
+  }
+
+  [label="Torrent Control"] {
+    -moz-box-ordinal-group: 0 !important
+  }
+}
+
+#PlacesToolbar {
+  .bookmark-item {
+    padding-right: 20px !important;
+  }
+
+  .bookmark-item {
+    padding-right: 40px !important;
+    font-size: 20px;
+    font-family: "Bahnschrift", sans-serif;
+    font-weight: lighter;
+  }
+  .toolbarbutton-icon {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 15px !important;
+  }
+
+  #PlacesToolbarItems {
+    border-color: beige;
+    border-width: 1px 0 0 0;
+    border-top-style: groove;
+    background: #00000008;
+  }
+
+  font-size: 15px;
+  font-weight: 500;
+  height: 40px;
+}
+
