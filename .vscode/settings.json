@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.pnp.cjs": true,
+    "**/.pnp*": true,
+    "*.css": {
+      "when": "$(basename).scss"
+    },
+    "*.css.map": true,
+    ".yarn": true
+  }
+}

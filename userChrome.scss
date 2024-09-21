@@ -5,96 +5,91 @@ $my-font-light: 14px lighter "Bahnschrift";
 $address-font: 15px "Fira Code";
 
 .search-one-offs {
-  display: none !important;
+    display: none !important;
 }
 
 #contentAreaContextMenu,
 #tabContextMenu {
-
-  #context-take-screenshot,
-  #context-sep-screenshots,
-  #context_openANewTab,
-  #context-print-selection,
-  #context-inspect-a11y,
-  #context-pocket,
-  #context_moveTabOptions,
-  #context_reloadTab,
-  #context-openlinkprivate,
-  #context-openlink,
-  #context-sendpagetodevice,
-  #context_sendTabToDevice,
-  #context-navigation,
-  #context-savepage,
-  #context-savelinktopocket,
-  #context-selectall,
-  .share-tab-url-item,
-  #context_selectAllTabs,
-  #context_bookmarkTab,
-  #context_selectAllTabs,
-  #appMenu-print-button2,
-  #appMenu-passwords-button,
-  #appMenu-new-tab-button2,
-  #context-openlinkintab,
-  #context-bookmarklink,
-  #context-sendlinktodevice,
-  #context-sendimage,
-  #context-setDesktopBackground,
-  #context-sep-setbackground {
-    display: none !important;
-  }
-
+    #context-take-screenshot,
+    #context-sep-screenshots,
+    #context_openANewTab,
+    #context-print-selection,
+    #context-inspect-a11y,
+    #context-pocket,
+    #context_moveTabOptions,
+    #context_reloadTab,
+    #context-openlinkprivate,
+    #context-openlink,
+    #context-sendpagetodevice,
+    #context_sendTabToDevice,
+    #context-navigation,
+    #context-savepage,
+    #context-savelinktopocket,
+    #context-selectall,
+    .share-tab-url-item,
+    #context_selectAllTabs,
+    #context_bookmarkTab,
+    #context_selectAllTabs,
+    #appMenu-print-button2,
+    #appMenu-passwords-button,
+    #appMenu-new-tab-button2,
+    #context-openlinkintab,
+    #context-bookmarklink,
+    #context-sendlinktodevice,
+    #context-sendimage,
+    #context-setDesktopBackground,
+    #context-sep-setbackground {
+        display: none !important;
+    }
 }
 
 #TabsToolbar-customization-target {
-  .tab-stack {
-    font-size: 14px;
-    font-family: $my-font-light;
-  }
+    .tab-stack {
+        font-size: 14px;
+        font-family: $my-font-light;
+    }
 }
 
 #PlacesToolbar {
+    .bookmark-item {
+        padding-right: 40px !important;
+        font: $my-font;
+    }
 
+    .toolbarbutton-icon {
+        width: 20px !important;
+        height: 20px !important;
+        margin-right: 5px !important;
+    }
 
-  .bookmark-item {
-    padding-right: 40px !important;
-    font: $my-font;
-  }
+    #PlacesToolbarItems {
+        border-color: beige;
+        border-width: 1px 0 0 0;
+        border-top-style: groove;
+        background: #00000008;
+    }
 
-  .toolbarbutton-icon {
-    width: 20px !important;
-    height: 20px !important;
-    margin-right: 5px !important;
-  }
-
-  #PlacesToolbarItems {
-    border-color: beige;
-    border-width: 1px 0 0 0;
-    border-top-style: groove;
-    background: #00000008;
-  }
-
-  font-size: 15px;
-  font-weight: 500;
-  height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    height: 40px;
 }
 
 #urlbar .urlbar-input-box {
-  font: 15px "FiraCode NFM" !important;
+    font: 15px "FiraCode NFM" !important;
 }
 
 hbox.toolbar-items {
-  margin-right: 25px;
-  background: rgba(6, 4, 4, 0.23);
+    margin-right: 25px;
+    background: rgba(6, 4, 4, 0.23);
 }
 
 #tabbrowser-tabs {
-  background: rgba(255, 255, 255, 0.1) !important;
-  .tabbrowser-tab[selected="true"] {
-    background: rgba(255, 255, 255, 0.2) !important;
-  }
+    background: rgba(255, 255, 255, 0.1) !important;
+    .tabbrowser-tab[selected="true"] {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
 }
 
 [label="Torrent Control"] {
-  -moz-box-ordinal-group: 0 !important
+    -moz-box-ordinal-group: 0 !important;
 }
-
