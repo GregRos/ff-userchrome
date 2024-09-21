@@ -1,0 +1,19 @@
+{
+  "name": "firefox-userchrome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch userChrome.scss:userChrome.css userChrome",
+    "deploy": "sass userChrome.scss:userChrome.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.18",
+    "sass": "^1.70.0",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.5.0"
+}
