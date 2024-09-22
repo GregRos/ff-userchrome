@@ -7,6 +7,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "sass userChrome.scss:userChrome.css",
+    "start": "tsx src/deploy.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "sass --watch userChrome.scss:userChrome.css"
   },
@@ -15,9 +16,12 @@
   },
   "dependencies": {
     "@types/node": "^22.5.5",
+    "@types/shelljs": "^0.8.15",
+    "chalk": "^5.3.0",
     "doddle": "*",
     "prettier": "^3.3.3",
     "sass": "^1.70.0",
+    "shelljs": "^0.8.5",
     "tsx": "^4.19.1",
     "typescript": "^5.3.3"
   },

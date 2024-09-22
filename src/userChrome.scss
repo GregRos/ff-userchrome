@@ -1,11 +1,11 @@
+@import "common.scss";
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
 $my-font: 14px "Bahnschrift";
 $my-font-light: 14px lighter "Bahnschrift";
 $address-font: 15px "Fira Code";
 
 .search-one-offs {
-    display: none !important;
+    display: none $_I;
 }
 
 #contentAreaContextMenu,
@@ -39,7 +39,7 @@ $address-font: 15px "Fira Code";
     #context-sendimage,
     #context-setDesktopBackground,
     #context-sep-setbackground {
-        display: none !important;
+        display: none $_I;
     }
 }
 
@@ -52,14 +52,14 @@ $address-font: 15px "Fira Code";
 
 #PlacesToolbar {
     .bookmark-item {
-        padding-right: 40px !important;
+        padding-right: 40px $_I;
         font: $my-font;
     }
 
     .toolbarbutton-icon {
-        width: 20px !important;
-        height: 20px !important;
-        margin-right: 5px !important;
+        width: 20px $_I;
+        height: 20px $_I;
+        margin-right: 5px $_I;
     }
 
     #PlacesToolbarItems {
@@ -75,7 +75,7 @@ $address-font: 15px "Fira Code";
 }
 
 #urlbar .urlbar-input-box {
-    font: 15px "FiraCode NFM" !important;
+    font: 15px "FiraCode NFM" $_I;
 }
 
 hbox.toolbar-items {
@@ -83,13 +83,69 @@ hbox.toolbar-items {
     background: rgba(6, 4, 4, 0.23);
 }
 
-#tabbrowser-tabs {
-    background: rgba(255, 255, 255, 0.1) !important;
-    .tabbrowser-tab[selected="true"] {
-        background: rgba(255, 255, 255, 0.2) !important;
+// a map with int keys for the colors
+
+$tab-colors: (
+    1: #6a0303,
+    2: #793033,
+    3: #a07d22,
+    4: #3b4909,
+    5: #4d552e,
+    6: #31631d,
+    7: #828b1c,
+    8: #104333,
+    9: #033e46,
+    10: #574824,
+    11: #421f5c,
+    12: #1e1b4e,
+    13: #580a4b,
+    14: #4b284a,
+    15: #500338,
+    16: #78033a,
+    17: #4b284a,
+    18: #4c0119,
+    19: #470a0f,
+    20: #411e1e
+);
+
+$top-overlap: 4px;
+
+@each $i, $color in $tab-colors {
+    .tabbrowser-tab:nth-child(#{length($tab-colors)}n + #{$i}):not([pinned]) .tab-background {
+        background: $color $_I;
+    }
+}
+
+:root {
+    --tab-min-height_mlt: 30px $_I;
+}
+
+.tabbrowser-tab {
+    overflow: unset;
+
+    margin-bottom: -#{$top-overlap} $_I;
+    margin-inline-start: 0 $_I;
+    .tab-background {
+        box-shadow: -2px -2px 2px 2px rgba(0, 0, 0, 0.564) $_I;
+    }
+    &[selected="true"] {
+        z-index: 1001 $_I;
+        $breakout: 10px;
+        @include p @include margin-lr(-$breakout);
+        box-sizing: border-box $_I;
+        .tab-background {
+            @include padding-lr($breakout);
+
+            box-shadow: 0px 0px 2px 2px rgb(253, 253, 255) $_I;
+        }
+    }
+    &:not([selected="true"]):hover {
+        .tab-background {
+            outline: 2px solid rgb(131, 174, 255) $_I;
+        }
     }
 }
 
 [label="Torrent Control"] {
-    -moz-box-ordinal-group: 0 !important;
+    -moz-box-ordinal-group: 0 $_I;
 }
