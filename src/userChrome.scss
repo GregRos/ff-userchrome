@@ -15,7 +15,6 @@ $address-font: 15px "Fira Code";
     #context_openANewTab,
     #context-print-selection,
     #context-inspect-a11y,
-    #context-pocket,
     #context_moveTabOptions,
     #context_reloadTab,
     #context-openlinkprivate,
@@ -24,7 +23,6 @@ $address-font: 15px "Fira Code";
     #context_sendTabToDevice,
     #context-navigation,
     #context-savepage,
-    #context-savelinktopocket,
     #context-selectall,
     .share-tab-url-item,
     #context_selectAllTabs,
@@ -74,74 +72,118 @@ $address-font: 15px "Fira Code";
     height: 40px;
 }
 
-#urlbar .urlbar-input-box {
-    font: 15px "FiraCode NFM" $_I;
+#urlbar-container {
+    font-family:
+        "FiraCode Nerd Font Mono",
+        "FiraCode Nerd Font",
+        "FiraCode NFM",
+        "FiraCode",
+        "Fira Code",
+        "Consolas" $_I;
+
+    font-size: 15px $_I;
 }
 
-hbox.toolbar-items {
-    margin-right: 25px;
-    background: rgba(6, 4, 4, 0.23);
-}
-
-// a map with int keys for the colors
-
-$tab-colors: (
-    1: #6a0303,
-    2: #793033,
-    3: #a07d22,
-    4: #3b4909,
-    5: #4d552e,
-    6: #31631d,
-    7: #828b1c,
-    8: #104333,
-    9: #033e46,
-    10: #574824,
-    11: #421f5c,
-    12: #1e1b4e,
-    13: #580a4b,
-    14: #4b284a,
-    15: #500338,
-    16: #78033a,
-    17: #4b284a,
-    18: #4c0119,
-    19: #470a0f,
-    20: #411e1e
-);
-
-$top-overlap: 4px;
-
-@each $i, $color in $tab-colors {
-    .tabbrowser-tab:nth-child(#{length($tab-colors)}n + #{$i}):not([pinned]) .tab-background {
-        background: $color $_I;
+tab {
+    --tab-color-1: #c0e7f5;
+    --tab-color-2: #b8f3c5;
+    --tab-color-3: #ff93fd;
+    --tab-color-4: #f4b9b9;
+    --tab-color-5: #b8b2e3;
+    --tab-color-6: #d0f5c1;
+    --tab-color-7: #fac5ed;
+    --tab-color-8: #d0bced;
+    --tab-color-9: #e8c5f5;
+    --tab-color-10: #ccacac;
+    --tab-color-11: #cdf1c3;
+    --tab-color-12: #bdb9f2;
+    --tab-color-13: #b4d6ad;
+    --tab-color-14: #dfecc3;
+    --tab-color-15: #caf6f0;
+    @media (prefers-color-scheme: dark) {
+        --tab-color-1: #1b2c32;
+        --tab-color-2: #042f0d;
+        --tab-color-3: #510d50;
+        --tab-color-4: #6f0c0c;
+        --tab-color-5: #2a2265;
+        --tab-color-6: #3e4b39;
+        --tab-color-7: #540640;
+        --tab-color-8: #2b095a;
+        --tab-color-9: #470060;
+        --tab-color-10: #561f1f;
+        --tab-color-11: #32402e;
+        --tab-color-12: #120d4d;
+        --tab-color-13: #0e3805;
+        --tab-color-14: #385100;
+        --tab-color-15: #003c34;
     }
 }
 
+$tab-colors: 15;
+@function get-tab-color($i) {
+    @return var(--tab-color-#{$i});
+}
+$top-overlap: 4px;
+
+@for $i from 1 through $tab-colors {
+    .tabbrowser-tab:nth-child(#{$tab-colors}n + #{$i} of :not([pinned])) {
+        @media (prefers-color-scheme: light) {
+            color: black !important;
+        }
+        --imposed-background: #{get-tab-color($i)};
+    }
+}
 :root {
     --tab-min-height_mlt: 30px $_I;
 }
 
-.tabbrowser-tab {
-    overflow: unset;
+@function css-lighten($color, $amount) {
+    @return lch(from var(#{$color}) calc(l + $amount) c h);
+}
 
-    margin-bottom: -#{$top-overlap} $_I;
-    margin-inline-start: 0 $_I;
-    .tab-background {
-        box-shadow: -2px -2px 2px 2px rgba(0, 0, 0, 0.564) $_I;
+.tabbrowser-tab {
+    overflow: unset $_I;
+    padding: 0 $_I;
+    position: relative $_I;
+    filter: brightness(0.95) contrast(0.95) $_I;
+    &[selected],
+    &[pinned] {
+        filter: unset;
     }
+    &[pinned] {
+        position: unset !important;
+    }
+    margin-bottom: -#{$top-overlap} $_I;
+    .tab-background {
+        box-shadow: 0px -6px 2px 0px rgba(0, 0, 0, 0.564) !important;
+        background: css-lighten(--imposed-background, -10) !important;
+    }
+    $breakout: 10px;
     &[selected="true"] {
         z-index: 1001 $_I;
-        $breakout: 10px;
-        @include p @include margin-lr(-$breakout);
-        box-sizing: border-box $_I;
-        .tab-background {
-            @include padding-lr($breakout);
 
+        .tab-label {
+            font-size: 16px $_I;
+            font-weight: 600 $_I;
+        }
+        .tab-content {
+            padding: 0 $_I;
+            margin-left: -2px;
+            margin-right: -2px;
+        }
+        box-sizing: content-box $_I;
+        .tab-background {
             box-shadow: 0px 0px 2px 2px rgb(253, 253, 255) $_I;
+            background: css-lighten(--imposed-background, 10) !important;
+            margin-left: -#{$breakout} $_I;
+            margin-right: -#{$breakout} $_I;
         }
     }
     &:not([selected="true"]):hover {
+        z-index: 1002 $_I;
         .tab-background {
             outline: 2px solid rgb(131, 174, 255) $_I;
+            filter: none;
         }
     }
 }

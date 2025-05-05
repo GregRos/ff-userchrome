@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "tsx",
+      "type": "node",
+      "request": "launch",
+      "program": "src/deploy.ts",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

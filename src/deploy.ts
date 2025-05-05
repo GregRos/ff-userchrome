@@ -1,17 +1,33 @@
 import { AsciiTable3 } from "ascii-table3"
 import chalk from "chalk"
 import { spawn } from "child_process"
-import { writeFileSync } from "fs"
+import { seq } from "doddle"
+import { mkdirSync, statSync, writeFileSync } from "fs"
+import { glob } from "glob"
 import { compile } from "sass"
-const profileFolder =
-    process.argv[2] ??
-    String.raw`C:\Users\Greg\AppData\Roaming\Mozilla\Firefox\Profiles\mhdpe0sx.dev-edition-default`
-
+const userProfile = process.env.USERPROFILE
+function getMozProfile(userProfile: string) {
+    const profilesRoot = `${userProfile}\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles`
+    // find a profile folder ending with dev-edition-default
+    const profileFolders = glob.sync(`${profilesRoot}\\*dev-edition-default*`.replaceAll("\\", "/"))
+    // pick the folder with the latest date
+    // if there are multiple folders, the first one is picked
+    return seq(profileFolders)
+        .maxBy(folder => {
+            const stats = statSync(folder)
+            return stats.mtime
+        })
+        .pull()
+}
+const profileFolder = getMozProfile(userProfile!)
 if (!profileFolder) {
     throw new Error("No profile folder provided")
 }
 console.log(chalk.red("Profile folder: "), chalk.blue(profileFolder))
 const sassFile = `${__dirname}/userChrome.scss`
+mkdirSync(`${profileFolder}/chrome`, {
+    recursive: true
+})
 const dest = `${profileFolder}/chrome/userChrome.css`
 console.log(
     "Compiles the userChrome.scss file into a Firefox userChrome.css file and watches for changes"
